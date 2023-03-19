@@ -6,6 +6,9 @@ public class ProductManager {
     }
 
     public void add(Product product) {
+        if (repo.findById(product.getID()) != null) {
+            throw new AlreadyExistsException ("Element with id: " + product.getID() + " already exists");
+        }
         repo.addNew(product);
     }
 
@@ -34,5 +37,4 @@ public class ProductManager {
         }
         return result;
     }
-
 }
